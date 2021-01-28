@@ -117,6 +117,8 @@
                RESP2(RESPCODE2)
            END-EXEC.
            PERFORM ERROR-CHECK.
+           
+           COMPUTE WS-END-NUM = FUNCTION NUMVAL(WS-POS-HOLDER).
       *  -----------------------------------------------------------
       *  Read input files arguments from containers.
       *  -----------------------------------------------------------
@@ -152,12 +154,7 @@
                             RESP(RESPCODE)
            END-EXEC.
            PERFORM ERROR-CHECK.
-
-           COMPUTE WS-END-NUM = FUNCTION NUMVAL(WS-POS-HOLDER).
-
-      *    COMPUTE WS-BEGIN-NUM = FUNCTION NUMVAL('00001').
-      *    COMPUTE WS-END-NUM = FUNCTION NUMVAL('00005').
-
+           
       *  -----------------------------------------------------------
       *  Firstly, calculate the means
       *  -----------------------------------------------------------
@@ -257,8 +254,6 @@
            END-IF.
 
       *  -----------------------------------------------------------
-      *  Error routines
-      *  -----------------------------------------------------------
        RESP-ERROR.
            MOVE 'EDUC' TO ABENDCODE
            PERFORM ABEND-ROUTINE.
@@ -302,4 +297,4 @@
       *  Finish
       *  -----------------------------------------------------------
        END-PGM.
-           EXEC CICS RETURN END-EXEC. 
+           EXEC CICS RETURN END-EXEC.
