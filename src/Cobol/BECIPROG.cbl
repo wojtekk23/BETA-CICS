@@ -5,16 +5,11 @@
 
        DATA DIVISION.
        WORKING-STORAGE SECTION.
-      *
+      *  -----------------------------------------------------------
       *  GENERAL WORK AREAS
-      *
+      *  -----------------------------------------------------------
        01  WORK-AREAS.
-           05  ERR-CODE         PIC S9(8) COMP.
            05  RECLEN           PIC S9(4) COMP VALUE 185.
-           05  WBTSERRQ-LENGTH  PIC S9(4) COMP VALUE 75.
-           05  WBTSCUST-LENGTH  PIC S9(4) COMP VALUE 13.
-           05  WBTSCUST-ITEMNO  PIC S9(4) COMP VALUE 1.
-
 
        01 WS-X-LINE.
            05 WS-X-KEY  PIC 9(5) COMP.
@@ -37,7 +32,6 @@
            SIGN IS LEADING SEPARATE CHARACTER.
        01 WS-X-AVG PIC S9(3)V9(12) VALUE +0.000000
            SIGN IS LEADING SEPARATE CHARACTER.
-      *01 WS-X-AVG PIC S9(17) VALUE +125.
        01 WS-Y-AVG PIC S9(3)V9(12) VALUE +0.000000
            SIGN IS LEADING SEPARATE CHARACTER.
        01 WS-COVAR PIC S9(3)V9(12) VALUE +0.000000
@@ -56,7 +50,9 @@
        01 RESPCODE2 PIC S9(8) COMP-4 VALUE 0.
        01 OUTPUTSTRING PIC X(10) VALUE 'MYOUTPUT12'.
 
+      *  -----------------------------------------------------------
       * Container name declarations
+      *  -----------------------------------------------------------
        01 OUTPUT-CONT PIC X(16) VALUE 'OUTPUTDATA'.
        01 BEGIN-CONT  PIC X(16) VALUE 'BEGINDATA1'.
        01 END-CONT    PIC X(16) VALUE 'ENDDATA001'.
@@ -64,7 +60,9 @@
        01 INPUTX-CONT PIC X(16) VALUE 'INPUTXDATA'.
        01 INPUTY-CONT PIC X(16) VALUE 'INPUTYDATA'.
 
+      *  -----------------------------------------------------------
       * Data fields used by the program
+      *  -----------------------------------------------------------
        01 RC-RECORD          PIC S9(8) COMP-4 VALUE 0.
        01 INPUTLENGTH        PIC S9(8) COMP-4.
        01 CHANNELNAME PIC X(16) VALUE SPACES.
@@ -81,11 +79,13 @@
 
       *************
        PROCEDURE DIVISION.
-      *  Get name of channel
+      *  -----------------------------------------------------------
+      *  Get the name of channel
+      *  -----------------------------------------------------------
            EXEC CICS ASSIGN CHANNEL(CHANNELNAME)
                             END-EXEC.
       *  -----------------------------------------------------------
-      *  If no channel passed in, terminate with abend code NOCH
+      *  If no channel is passed in, terminate with abend code NOCH
       *  -----------------------------------------------------------
            IF CHANNELNAME = SPACES THEN
                MOVE 'NOCH' TO ABENDCODE
@@ -93,7 +93,7 @@
            END-IF.
 
       *  -----------------------------------------------------------
-      *  Read position arguments from containers.
+      *  Read position arguments from the begin and end containers.
       *  -----------------------------------------------------------
            MOVE LENGTH OF WS-POS-HOLDER TO INPUTLENGTH.
            EXEC CICS GET CONTAINER(BEGIN-CONT)
@@ -216,7 +216,7 @@
              * (WS-Y-NUM - WS-Y-AVG).
            COMPUTE WS-X-VAR = WS-X-VAR + (WS-X-NUM - WS-X-AVG) ** 2.
       *  -----------------------------------------------------------
-      *  Read next record from each file
+      *  Read the next records from each file
       *  -----------------------------------------------------------
        READ-RECORD.
            COMPUTE WS-ITER = WS-ITER + 1.
@@ -254,9 +254,13 @@
            END-IF.
 
       *  -----------------------------------------------------------
+      *  Handle an unrecognized response error
+      *  -----------------------------------------------------------
        RESP-ERROR.
            MOVE 'EDUC' TO ABENDCODE
            PERFORM ABEND-ROUTINE.
+      *  -----------------------------------------------------------
+      *  Check response codes for errors
       *  -----------------------------------------------------------
        ERROR-CHECK.
            EVALUATE RESPCODE
@@ -274,6 +278,8 @@
              WHEN OTHER
                 PERFORM RESP-ERROR
            END-EVALUATE.
+      *  -----------------------------------------------------------
+      *  Send an error
       *  -----------------------------------------------------------
        ERROR-SEND.
            EXEC CICS PUT CONTAINER(OUTPUT-CONT)
