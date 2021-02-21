@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container" style="margin: auto; width: 500px; ">
+            <div class="col-xs-1 center-block text-center">
+                <h1>BECIPROG</h1>
+                <h2>{0}</h2>
+                <h3>{1}</h3>
+            </div>
+        </div>
+        <div class="container" style="margin: auto; width: 500px; ">
+            <div class="col-xs-1 center-block text-center">
+                <form method="POST" action="">
+                    <label for="INPUT_X">Ceny X:</label>
+                    <select name="INPUT_X" id="inputx">
+                        <option value="BECIIN01" selected>Plik wygenerowany 1</option>
+                        <option value="BECIIN02">Plik wygenerowany 2</option>
+                        <option value="BECIIN03">CDP</option>
+                        <option value="BECIIN04">WIG</option>
+                    </select><br>
+                    <br>
+                    <label for="INPUT_Y">Ceny Y:</label>
+                    <select name="INPUT_Y" id="inputy">
+                        <option value="BECIIN01">Plik wygenerowany 1</option>
+                        <option value="BECIIN02" selected>Plik wygenerowany 2</option>
+                        <option value="BECIIN03">CDP</option>
+                        <option value="BECIIN04">WIG</option>
+                    </select><br>
+                    <br>
+                    <div class="col-xs-1 center-block">
+                        <label for="beginDay">Pierwszy dzien:</label>
+                        <input type="number" name="beginDay" id="beginday" min="1" max="99999">
+                        <br>
+                        <label for="endDay">Ostatni dzien:</label>
+                        <input type="number" name="endDay" id="endday" min="1" max="99999">
+                    </div>
+                    <br>
+                    <input type="submit" value="Oblicz" />
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
