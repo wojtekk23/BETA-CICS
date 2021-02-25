@@ -1,6 +1,8 @@
 # BETA-CICS
 Oblicza [współczynnik beta](https://pl.wikipedia.org/wiki/Wsp%C3%B3%C5%82czynnik_beta) dla dwóch wskazanych spółek giełdowych, używając CICS-a. Aplikacja webowa udostepnia REST API oraz korzystający z niego interfejs webowy. Obliczenia są przeprowadzone w COBOL-u.
 
+Program został przedstawiony podczas spotkania kończącego zajęcia *Języki i Narzędzia Programowania 3 - Wstęp do programowania w z/OS* ([link](https://github.com/wojtekk23/BETA-CICS/blob/main/prezentacja.pdf) do prezentacji naszego zespołu)
+
 ## Struktura repozytorium
 
 * `/src/Cobol` zawiera plik źródłowy z programem BETA-CICS
