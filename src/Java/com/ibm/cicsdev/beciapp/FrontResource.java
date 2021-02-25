@@ -49,10 +49,11 @@ public class FrontResource {
     	String resText = "0.000000000";
     	
     	if (res.getStatusText().equals(BetaResource.ERROR_STATUS)) {
+            // Display the error
     		statusText = BetaResource.ERROR_STATUS;
     		resText = res.getResultText();
     	} else {
-    		// Konwersja
+    		// Display the result in a human-readable format
     		resText = res.getResultText();
     		String units = resText.substring(1, 4);
     		

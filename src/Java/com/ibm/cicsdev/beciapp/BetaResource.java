@@ -44,11 +44,6 @@ public class BetaResource {
     private static final String ISO8601_FORMAT = "%tFT%<tT.%<tLZ";
 
     /**
-     * Default string to reverse.
-     */
-//    private static final String DEFAULT_STRING = "Hello from Java";
-
-    /**
      * Name of the CICS program the {@link #reverse(String)} method will LINK to.
      */
     private static final String PROGRAM_NAME = "BECIPROG";
@@ -79,6 +74,8 @@ public class BetaResource {
     private static final String DEFAULT_INPUTB = "BECIIN02";
     private static final String DEFAULT_BEGIN_TEXT = "00001";
     private static final String DEFAULT_END_TEXT = "00010";
+    public static final String ERROR_STATUS = "ERROR";
+    public static final String RESULT_STATUS = "RESULT";
 
 
     /**
@@ -87,8 +84,8 @@ public class BetaResource {
      * @return - JAXB bean ReverseResult with input, output and time
      */
     @GET
-    public BetaResult reverseNoArgs() {
-        return reverse(DEFAULT_INPUTA, DEFAULT_INPUTB, DEFAULT_BEGIN_TEXT, DEFAULT_END_TEXT);
+    public BetaResult calculateBetaNoArgs() {
+        return calculateBeta(DEFAULT_INPUTA, DEFAULT_INPUTB, DEFAULT_BEGIN_TEXT, DEFAULT_END_TEXT);
     }
 
     
@@ -101,7 +98,7 @@ public class BetaResource {
      */
     @GET
     @Path("/{inputA}/{inputB}/{beginText}/{endText}")
-    public BetaResult reverse(
+    public BetaResult calculateBeta(
     		@PathParam("inputA") String inputA,
     		@PathParam("inputB") String inputB,
     		@PathParam("beginText") String beginText, 
@@ -325,11 +322,13 @@ public class BetaResource {
         // Create the result bean
         BetaResult result = new BetaResult();
 
+        // Check result for errors
         String statusText;
 		if (outputStr.matches("[a-zA-Z]+"))
-        	statusText = "ERROR";
+        	statusText = ERROR_STATUS;
         else
-        	statusText = "RESULT";
+        	statusText = RESULT_STATUS;
+        
         // Populate with the original string
         result.setStatusText(statusText);
 
