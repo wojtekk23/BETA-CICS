@@ -51,7 +51,10 @@ gdzie kolejne parametry to:
 Odpowiedź jest w formacie JSON:
 * `time` - czas wysłania odpowiedzi
 * `status` - w przypadku wystąpienia obsługiwanego błędu wynosi `ERROR`, w przypadku poprawnego wykonania zwraca `RESULT`
-* `result` - w przypadku wystąpienia obsługiwanego błędu przyjmuje jego nazwę, w przypadku poprawnego wykonania zwraca współczynnik beta w formacie Cobolowym: `S9(3)V9(12)`. Np. tekst `+001234560000000` oznacza liczbę `1,23`.
+* `result` - w przypadku wystąpienia obsługiwanego błędu przyjmuje jego nazwę, w przypadku poprawnego wykonania zwraca współczynnik beta w formacie Cobolowym: `S9(3)V9(12)`. Np. tekst `+001234560000000` oznacza liczbę `1.23`.
 
 ### Interfejs webowy
 Interfejs webowy znajduje się w endpoincie: `/rest/front`. Pozwala na wybranie dwóch plików (załączone są dwa testowe pliki oraz pliki zawierające obliczone zwroty CDP oraz WIG dla tego samego zakresu dni) oraz pierwszego i ostatniego dnia, na podstawie którego obliczany jest współczynnik.
+
+# Autorzy
+Wojciech Kłopotek, Wojciech Olejniczak
