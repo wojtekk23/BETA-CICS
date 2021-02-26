@@ -12,6 +12,7 @@ Program został przedstawiony podczas spotkania kończącego zajęcia *Języki i
 * `/src/HTML` zawiera pliki HTML używane w interfejsie webowym.
 * `/src/Python` zawiera program generujący dane testowe
 * `/input` zawiera przykładowe pliki wejściowe: `BECIIN01`, `BECIIN02` to pliki testowe, zaś `BECICDP` i `BECIWIG` to zwroty odpowiednio dla CDP i WIG
+* `/imgs` obrazki pomocnicze
 
 ## Symulator
 
