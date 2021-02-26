@@ -3,11 +3,19 @@ Oblicza [współczynnik beta](https://pl.wikipedia.org/wiki/Wsp%C3%B3%C5%82czynn
 
 Program został przedstawiony podczas spotkania kończącego zajęcia *Języki i Narzędzia Programowania 3 - Wstęp do programowania w z/OS* ([link](https://github.com/wojtekk23/BETA-CICS/blob/main/prezentacja.pdf) do prezentacji naszego zespołu)
 
+![Architektura rozwiązania](imgs/arch.png)
+
 ## Struktura repozytorium
 
 * `/src/Cobol` zawiera plik źródłowy z programem BETA-CICS
 * `/src/Java` zawiera implementację back-endu dla REST API oraz interfejsu
 * `/src/HTML` zawiera pliki HTML używane w interfejsie webowym.
+* `/src/Python` zawiera program generujący dane testowe
+* `/input` zawiera przykładowe pliki wejściowe: `BECIIN01`, `BECIIN02` to pliki testowe, zaś `BECICDP` i `BECIWIG` to zwroty odpowiednio dla CDP i WIG
+
+## Symulator
+
+Przy symulacji danych założyliśmy, że średnia zwrotów wynosi zero. Program zwraca kolejne rekordy obu plików, prawdziwą betę oraz obliczoną betę.
 
 ## Cobol
 ### Dane
